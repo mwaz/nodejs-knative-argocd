@@ -117,5 +117,5 @@ workflows:
           server: $ARGOCD_SERVER
           username: $ARGOCD_USERNAME
           password: $ARGOCD_PASSWORD
-          requires:
-            - argocd-configure
+          # requires:
+          #   - argocd-configure
