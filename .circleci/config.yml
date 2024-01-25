@@ -107,11 +107,11 @@ workflows:
       - bump-docker-tag-kustomize:
           requires:
             - docker/publish
-      - argocd-configure:
-          cluster-name: $CLUSTER_NAME
-          resource-group: $RESOURCE_GROUP
-          requires:
-            - bump-docker-tag-kustomize
+      # - argocd-configure:
+      #     cluster-name: $CLUSTER_NAME
+      #     resource-group: $RESOURCE_GROUP
+      #     requires:
+      #       - bump-docker-tag-kustomize
       # Paste the following only when you opt for the ArgoCD manual-sync-policy:
       - argocd-manual-sync:
           server: $ARGOCD_SERVER
