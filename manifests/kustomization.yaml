@@ -8,4 +8,4 @@ namespace: nodejs
 images:
 - name: aks-nodejs-argocd
   newName: sparatan/aks-nodejs-argocd
-  newTag: 5bd25d5b1f5199ada74bc716038a4a5c5e9079b2
+  newTag: a81f149fab822201c0705d89d6544d98953ccc1c
