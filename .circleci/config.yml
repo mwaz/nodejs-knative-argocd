@@ -30,9 +30,9 @@ jobs:
           command: |
             URL=https://<< parameters.server >>/download/argocd-linux-amd64
             [ -w /usr/local/bin ] && SUDO="" || SUDO=sudo
+            $SUDO apt-get update
             $SUDO curl --insecure -sSL -o /usr/local/bin/argocd $URL
             $SUDO chmod +x /usr/local/bin/argocd
-            RUN apt-get --allow-releaseinfo-change update
       - run:
           name: ArgoCD CLI login
           command: argocd login << parameters.server >> --insecure --username << parameters.username >> --password << parameters.password >>
