@@ -7,6 +7,13 @@ orbs:
   kubernetes: circleci/kubernetes@1.3.1
 
 jobs:
+  verify-cli-install:
+    executor: azure-cli/default
+    steps:
+      - azure-cli/install
+      - run:
+          command: az -v
+          name: Verify Azure CLI is installed
   argocd-manual-sync:
     docker:
       - image: cimg/base:stable
@@ -24,13 +31,6 @@ jobs:
           Password for ArgoCD
         type: string
   
-  verify-cli-install:
-    executor: azure-cli/default
-    steps:
-      - azure-cli/install
-      - run:
-          command: az -v
-          name: Verify Azure CLI is installed
     steps:
       - run:
           name: Install ArgoCD CLI
