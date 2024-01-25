@@ -7,13 +7,6 @@ orbs:
   kubernetes: circleci/kubernetes@1.3.1
 
 jobs:
-  verify-cli-install:
-    executor: azure-cli/default
-    steps:
-      - azure-cli/install
-      - run:
-          command: az -v
-          name: Verify Azure CLI is installed
   argocd-manual-sync:
     docker:
       - image: cimg/base:stable
@@ -39,6 +32,7 @@ jobs:
             [ -w /usr/local/bin ] && SUDO="" || SUDO=sudo
             $SUDO curl --insecure -sSL -o /usr/local/bin/argocd $URL
             $SUDO chmod +x /usr/local/bin/argocd
+            RUN apt-get --allow-releaseinfo-change update
       - run:
           name: ArgoCD CLI login
           command: argocd login << parameters.server >> --insecure --username << parameters.username >> --password << parameters.password >>
@@ -105,9 +99,6 @@ jobs:
             git push origin $CIRCLE_BRANCH
 
 workflows:
-  Installation:
-    jobs:
-      - verify-cli-install
   Deploy-App-on-AKS:
     jobs:
       - docker/publish:
